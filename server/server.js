@@ -10,7 +10,11 @@ app.use(cors())
 const bodyParser = require('body-parser')
 app.use(bodyParser.json());
 
-const port = process.env.PORT || 5000;
+let port = process.env.PORT;
+if (port == null || port == "") {
+    port = 5000;
+}
+app.listen(port);
 
 var knex = require('knex');
 const db = knex({
@@ -28,7 +32,7 @@ const db = knex({
 //dev:
 //app.listen(port, () => console.log(`Listening on port ${port}`));
 //prod:
-app.listen(port, () => console.log(`Listening on port ${port}`));
+
 
 
 
